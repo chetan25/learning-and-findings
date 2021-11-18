@@ -114,7 +114,13 @@ Let's see an example
 - The reason behind using the `systemjs` bundles is
   ```js
    With systemJS we cannot use import keyword,
-   since systemJS keeps it own registry/list of module we are using and it is separate from what browser keeps track of and if we use import then browser keeps a track of what the import module are. Since we provide feature what browser does not supprt we cannot use import we will use new syntax to import modules, which broawser does not understand but system js does. We don;t have to do it manually, we just instruct the bundler to ouput in system format and that is it.
+   since systemJS keeps it own registry/list of module we are using
+   and it is separate from what browser keeps track of 
+   and if we use import then browser keeps a track of what the import module are
+   Since we provide feature what browser does not supprt we cannot use import
+   we will use new syntax to import modules, which browser does not understand
+   but system js does. We don;t have to do it manually, 
+   we just instruct the bundler to ouput in system format and that is it.
 
   ```
 
