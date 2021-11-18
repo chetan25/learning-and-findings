@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"> -->
+ 
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <title>APP1</title>
+    
+    <!-- SystemSJ Releated Script section starts -->
+  
+    <!-- <script type="systemjs-importmap">
+        {
+          "imports": {
+            "react": "https://cdn.jsdelivr.net/npm/@esm-bundle/react/system/react.production.min.js",
+            "reactDOM": "https://cdn.jsdelivr.net/npm/@esm-bundle/react-dom/system/react-dom.production.min.js"
+          }
+        }
+      </script> -->
+      
+  <!-- <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script> -->
+
+  <!-- SystemSJ Releated Script section ends -->
+
+</head>
+<body>
+    <div id='root'>Test</div>
+    <!-- To load the deps from the absolute path -->
+    <!-- <script type="module" src="./absolute-path.js"></script> -->
+   
+    <!-- To load the SystemJS way -->
+    <!-- <script type="systemjs-module" src="./bundle.js"></script> -->
+
+    <!-- Alternate way to load -->
+    <!-- <script>System.import('./index-browser.js')</script> -->
+</body>
+</html>
