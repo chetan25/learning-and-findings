@@ -97,3 +97,5 @@ To
 import { render } from "utils/render";
 import App from "src/app";
 ```
+
+*** Example can be found [here](https://github.com/chetan25/basic-testing-with-jest-rtl) *** 
