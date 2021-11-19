@@ -35,7 +35,7 @@ So there are two ways to fix this:
 
 ## Alias with Webpack and Typescript
 
-Tried of writing import with a deep nested relative paths.
+Tired of writing import with a deep nested relative paths.
 ```js
 import Greetings from '../../component/greetings';
 ```
