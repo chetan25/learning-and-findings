@@ -1,0 +1,68 @@
+# workflow name
+name: Basic Workflow
+
+# Events that will trigger this flow
+# on: [push, pull_request]
+on:
+  # schedule:
+  #   - cron: "0/5 * * * *" # every 5 min
+  # repository_dispatch:
+  #   types: [build] # custom event name that we pass
+  push:
+  pull_request:
+    types: [closed, assigned, opened]
+
+# jobs to run
+jobs:
+  # first job, specify a unique id
+  run-bash-shell-job:
+    # what os the job will run on
+    runs-on: ubuntu-latest
+    # is an araay of step
+    steps:
+      - name: Echo Hello World
+        # default is bash or ubuntu and mac so lets write simple bash
+        run: echo "Hello World"
+
+      - name: Mulitple Commands
+        # use the pipe "|" symbol to run multiple commands
+        run: |
+          echo "Multiple Commands"
+          echo "${{github.token}}"
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          npm -v
+
+  # second jon
+  run-python-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python
+        run: |
+          import platform
+          print(platform.processor())
+        # speicfy the shell where this needs to run
+        shell: python
+
+  run-powershell:
+    runs-on: windows-latest
+    steps:
+      - name: Window Powershell Directory
+        run: Get-Location
+
+      - name: Window Bash Directory
+        run: pwd
+        shell: bash
+
+  run-js-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple action
+        id: helloworld
+        uses: actions/hello-world-javascript-action@v1
+        # we use this key to provide input to action
+        with:
+          who-to-greet: World
+
+      - name: Get the output from action
+        run: echo "${{  steps.helloworld.outputs.time }}"

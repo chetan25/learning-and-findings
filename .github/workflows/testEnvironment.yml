@@ -1,0 +1,44 @@
+name: Environment Variables
+
+on: push
+
+# availabe for all jobs in this workflow
+env:
+  TEST_ENV: TEST Value
+
+jobs:
+  echo-env:
+    env:
+      JOB_VARIABLE: Only in this job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Variables
+        env:
+          STEP_ENV: Only Step
+        run: |
+          echo "Environment Variable"
+          echo "TEST_ENV value is:  ${TEST_ENV}"
+          echo "JOB_VARIABLE value is:  ${JOB_VARIABLE}"
+          echo "STEP_ENV value is: ${STEP_ENV}"
+
+  conditons-job:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Test Condition
+        run: echo "COndition was successfull"
+  # git-clone-manually:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Clone repo
+  #       run: |
+  #         git init
+  #         git remote add origin "https://$GITHUB_ACTOR:${{
+  #         secrets.GITHUB_TOKEN }}@github.com/
+  #         $GITHUB_REPOSITORY.git"
+  #         git config --global user.email "my-test@bot.com"
+  #         git config --global user.name "my-pass"
+  #         git fetch
+  #         git checkout master
+  #         git branch --set-upstream-to=origin/master
+  #         git pull
