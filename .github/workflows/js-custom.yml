@@ -8,11 +8,3 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Log greeting
-        # we need to checkout before we can refernce our files
-        uses: ../../custom-actions/actions/simple-action
-        id: greet
-        with:
-          greeter-name: "Rambo"
-      - name: Log Greeting Date
-        run: echo "Date is ${{ steps.greet.outputs['greet-date']}}"
