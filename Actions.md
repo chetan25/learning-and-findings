@@ -311,7 +311,7 @@ jobs:
 #### Custom Actions
 
 - We can write custom action in different ways and that gives us capability to re-use code and have more control.
-- We can create a simple javasctipt action by adding two files our project, the `action.yml` and `index.js`(which is the entry point.)
+- We can create a simple javascript action by creating a new folder under `.github` folder called `actions` and then adding two files in there, the `action.yml` and `index.js`(which is the entry point.)
   - `action.yml` file contains the info about our action like the name, author, input parameters, output from our action and how does the action executes.
 
 ```yml
@@ -346,7 +346,7 @@ const greetDate = new Date().toString();
 core.setOutput("greet-date", greetDate);
 ```
 
-- What if the above code was throwing Error on some line, with current logic our action would stop but on github it would appear that the action passed successfuly.
+- What if the above code was throwing Error on some line, with current logic our action would stop but on github it would appear that the action passed successfully.
 - `throw new Error("Some error message");` would only stop the execution, but not make the action fail, action would still appear as passing.
 - To make the action `fail` we need to explicitly call `core.setFailed('Message')`.
 
