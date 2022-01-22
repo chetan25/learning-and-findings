@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Log greeting
         # we need to checkout before we can refernce our files
-        uses: ../../custom-actions/actions/simple-action
+        uses: ./actions/simple-action
         id: greet
         with:
           greeter-name: "Rambo"
