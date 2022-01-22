@@ -8,7 +8,8 @@ on:
   #   - cron: "0/5 * * * *" # every 5 min
   # repository_dispatch:
   #   types: [build] # custom event name that we pass
-  push:
+
+  # push:
   pull_request:
     types: [closed, assigned, opened]
 

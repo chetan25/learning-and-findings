@@ -208,3 +208,160 @@ jobb:
   big-job:
     timeout-minutes: 500
 ```
+
+### Using Strategy
+
+- Imagine we want to run a job on different node version, by defauult our VM will have a set node version.
+- We would need to configure it to use a specific node version.
+- We would use the `actions/setup-node` action to configure it.
+
+```yml
+- name: Setup Node
+  uses: actions/setup-node@v1
+  with:
+    node-version: 7 # configuring to use Version 7
+```
+
+- We can now configure the matrix to run for different versions
+
+```yml
+matrix-job:
+  strategy:
+    matrix:
+      # any key name we like for later reference
+      node: [6, 8, 10]
+      # a key for OS
+      os: [macos-latest, ubuntu-latest]
+    # default true, if one fails no one else runs
+    fail-fast: true
+    # by default github will try to maximize it
+    max-parallel: 2
+  runs-on: ${{ matrix.os}}
+  steps:
+    - name: Log Node version
+      run: node -v
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        # this node-version is the input the action needs
+        node-version: ${{ matrix.node}}
+
+    - name: Log the Updated version
+      run: node -v
+```
+
+- If ever we feel like we need to exclude some jobs from running based on some Matrix configuration we can use the `exclude`. The below setuo will not run the jobs when OS is 'ubuntu-lates' and Node version is 8 or when OS is 'macos-latest' and Node version is 10
+
+```yml
+strategy:
+  matrix:
+    # any key name
+    node_version: [8, 10]
+    # a key for OS
+    os: [macos-latest, ubuntu-latest]
+    exclude:
+      - os: ubuntu-latest
+        node: 8
+      - os: macos-latest
+        node: 10
+  # default true, if one fails no one else runs
+  fail-fast: true
+  # by default github will try to maximize it
+  max-parallel: 2
+```
+
+#### Using Docker
+
+- Simple step to just use a docker image is as below
+
+```yml
+jobs:
+  docker-test:
+    runs-on: ubuntu-latest
+    # container: node:13.5.0-alpine3.10
+    container:
+      image: node:13.5.0-alpine3.10
+    steps:
+      - name: Log Container Node version
+        run: |
+          node -v
+          cat /etc/os-release
+```
+
+- The `container` key can be an array and take in options like `image`, `volumes`, `env`, `ports` etc all the options that a docker container might use
+
+- To run multile docker containers we can use `services` key instead of `container`
+
+```yml
+jobs:
+  docker-test:
+    runs-on: ubuntu-latest
+    services:
+      app:
+        image: myAppDOckerImage
+        ports:
+          - 3001:3001
+      db:
+        image: mongo
+        ports:
+          - 2701:2701
+```
+
+#### Custom Actions
+
+- We can write custom action in different ways and that gives us capability to re-use code and have more control.
+- We can create a simple javasctipt action by adding two files our project, the `action.yml` and `index.js`(which is the entry point.)
+  - `action.yml` file contains the info about our action like the name, author, input parameters, output from our action and how does the action executes.
+
+```yml
+name: Simple Javacript Action
+author: Me
+description: Simple logging Action
+inputs:
+  greeter-name:
+    description: "Name to output in greeting message"
+    required: true
+    default: World
+outputs:
+  date:
+    description: "Greeting Date"
+runs:
+  using: "node16" # since it will be executed by node
+  main: "index.js" # main entry point
+```
+
+- A simple js action would look like this
+
+```js
+const core = require("@actions/core");
+// const github = require("@actions/github");
+
+// get input and log it
+const greeterName = core.getInput("greeter-name");
+console.log(`Hello there ${greeterName}`);
+
+// set output
+const greetDate = new Date().toString();
+core.setOutput("greet-date", greetDate);
+```
+
+- What if the above code was throwing Error on some line, with current logic our action would stop but on github it would appear that the action passed successfuly.
+- `throw new Error("Some error message");` would only stop the execution, but not make the action fail, action would still appear as passing.
+- To make the action `fail` we need to explicitly call `core.setFailed('Message')`.
+
+```js
+const core = require("@actions/core");
+
+try {
+  // get input and log it
+  const greeterName = core.getInput("greeter-name");
+  console.log(`Hello there ${greeterName}`);
+
+  // set output
+  const greetDate = new Date().toString();
+  core.setOutput("greet-date", greetDate);
+} catch (error) {
+  core.setFailed(error.message);
+}
+```

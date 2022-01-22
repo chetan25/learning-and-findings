@@ -1,6 +1,7 @@
 name: Environment Variables
 
-on: push
+# on: push
+on: pull_request
 
 # availabe for all jobs in this workflow
 env:

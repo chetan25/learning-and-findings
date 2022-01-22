@@ -1,0 +1,14 @@
+name: Simple Action
+author: Me
+description: Simple logging Action
+inputs:
+  greeter-name:
+    description: "Name to output in greeting message"
+    required: true
+    default: World
+outputs:
+  greet-date:
+    description: "Greeting Date"
+runs:
+  using: "node16"
+  main: "index.js"
