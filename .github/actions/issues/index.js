@@ -8,7 +8,7 @@ try {
   const assignees = core.getInput("assignees");
 
   // create a new octokit github client
-  const octokitClient = new github.GitHub(token);
+  const octokitClient = github.getOctokit(token);
 
   const issue = octokitClient.rest.issues.create({
     owner: github.context.repo.owner,
