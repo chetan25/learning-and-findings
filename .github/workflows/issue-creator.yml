@@ -16,7 +16,6 @@ jobs:
           title: Test Issue
           body: This is a test from action
           assignees: |
-            chetan
-            rambo
+            chetan25
       - name: Check outputs
         run: echo ${{ steps.issue.outputs.issueCreated}}
