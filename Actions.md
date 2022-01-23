@@ -365,3 +365,32 @@ try {
   core.setFailed(error.message);
 }
 ```
+
+#### Adding Debugging to Actions
+
+- We can add some debugging to our custom action, that would show up if the consumer has enabled the debugging.
+- Few option for it are
+  - `core.debug('Message)` - to add any debugging message
+  - `core.warn('warning')` - to add any warning message
+  - `core.error('error')` - to add any error message
+- We can also make logs collapsible if they are long using the group feature.
+
+```js
+core.startGroup("Logging a long Object");
+console.log(JSON.stringify({}, null, "\t"));
+core.endGroup();
+```
+
+#### Adding Environment Variable in Custom Action
+
+- We can add env variables in our custom action that could be used by subsequent steps in the consumer action.
+
+  ```js
+  // custom action
+  core.exportVariable("CustomEnvVar", "From CUstom");
+  ```
+
+  ```yml
+  # in consuming action
+  run: echo $CustomEnvVar
+  ```

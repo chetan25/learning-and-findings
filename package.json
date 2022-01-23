@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:js-action": "ncc build ./.github/actions/simple-action/index.js -o ./.github/actions/simple-action/dist",
+    "build:issue-action": "ncc build ./.github/actions/issues/index.js -o ./.github/actions/issues/dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

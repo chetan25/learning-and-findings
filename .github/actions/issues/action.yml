@@ -1,0 +1,22 @@
+name: Create Github Issues
+author: Me
+description: "Create a issue on githib"
+inputs:
+  token:
+    description: "Github token"
+    required: true
+  title:
+    description: "Issue Title"
+    required: true
+  body:
+    description: "Issue body"
+    required: true
+  assignees:
+    description: "Who should the Issue be assigned to. Should be names in new line"
+    required: false
+outputs:
+  issueCreated:
+    description: "The issue object cretaed"
+runs:
+  using: "node16"
+  main: "dist/index.js"

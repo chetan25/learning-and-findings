@@ -1,0 +1,22 @@
+name: Issue creator
+
+on: push
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Issue Creation
+        id: issue
+        uses: ./.github/actions/issues
+        with:
+          token: ${{ secrets.GITHUB_TOKEN}}
+          title: Test Issue
+          body: This is a test from action
+          assignees: |
+            chetan
+            rambo
+      - name: Check outputs
+        run: echo ${{ steps.issue.outputs.issueCreated}}
