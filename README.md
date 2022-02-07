@@ -6,4 +6,8 @@
 
 #### [Alias in Webpack + Typescript + Jest](WEBPACK.md#alias-with-webpack-and-typescript)
 
+#### [Basic Git](BASICGIT.md)
+
 #### [Getting to Know Github Actions](Actions.md)
+
+#### [CSS Basics](CSSBASICS.md)
