@@ -11,3 +11,5 @@
 #### [Getting to Know Github Actions](Actions.md)
 
 #### [CSS Basics](CSSBASICS.md)
+
+#### [JavaScript Promises Simplified](PROMISES.md)
