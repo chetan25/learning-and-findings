@@ -1,4 +1,11 @@
-## Github Actions
+---
+Title: Github Actions
+Excerpt: Github Actions in Action
+Tech: "Github"
+---
+
+
+# Github Actions
 
 #### To enable extra debug info in Actions
 
