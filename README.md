@@ -1,6 +1,6 @@
 ---
 Title: Learnings and Findings
-Excerpt: Collection of some learnings and some issues
+Excerpt: Links to some bit size learning and findings.
 Tech: "React, Vite, Typescript"
 ---
 
