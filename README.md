@@ -1,3 +1,9 @@
+---
+Title: Learnings and Findings
+Excerpt: Collection of some learnings and some issues
+Tech: "React, Vite, Typescript"
+---
+
 # Collection of some learnings and some issues
 
 #### [How does Browser resolve import statements](browser-import/README.md)
